@@ -2,6 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,7 @@
 </head>
 <body>
 ESTAMOS EN LISTA AUTORES
-<table id="tabla">
+<table id="tabla" border="1">
 	<thead>
 		<tr>
 			<th>Codigo del autor</th>
@@ -21,15 +22,16 @@ ESTAMOS EN LISTA AUTORES
 		</tr>
 	</thead>
 	<tbody>
-		<%
+		<% //MAS DE UNA LINEA DE CODIGO EN JAVA
 		List<Autor> listaAutores=(List<Autor>)request.getAttribute("listaAutores");
 		if(listaAutores!=null){
 			for(Autor autor:listaAutores){
 		%>	
 			<tr>
-				<td><%= autor.getIdAutor() %></td>
+				<td><%= autor.getIdAutor() %></td> <!-- UNA SOLA LINEA DE CODIGO EN JAVA -->
 				<td><%= autor.getNombre() %></td>
 				<td><%= autor.getNacionalidad() %></td>
+				<td></td>
 			</tr>
 		<%
 			}

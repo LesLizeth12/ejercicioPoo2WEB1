@@ -58,8 +58,8 @@ public class AutoresController extends HttpServlet {
 		try {
 			request.setAttribute("listaAutores", modelo.listarAutores()); 
 			
-			Iterator<Autor> it=modelo.listarAutores().iterator();
-			while(it.hasNext()) {
+			Iterator<Autor> it=modelo.listarAutores().iterator(); //LISTA
+			while(it.hasNext()) { //RECORRIDO DE LA LISTA
 				Autor a=it.next();
 				System.out.println(a.getIdAutor()+" "+a.getNombre()+" "+a.getNacionalidad());
 			}
@@ -79,10 +79,7 @@ public class AutoresController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { //ENVIAR DATOS DE MANERA OCULTA
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
 		processRequest(request, response);
 	}
-	
-	
-
 }

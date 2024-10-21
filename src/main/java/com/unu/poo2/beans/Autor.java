@@ -26,10 +26,10 @@ public class Autor {
 	public Autor() {
 		this (0,"","");
 	}
-	public Autor(int idAutor, String nacionalidad, String nombre) {
+	public Autor(int idAutor, String nombre, String nacionalidad) {
 		this.idAutor = idAutor;
-		this.nacionalidad = nacionalidad;
 		this.nombre = nombre;
+		this.nacionalidad = nacionalidad;
 	}
 	
 	
