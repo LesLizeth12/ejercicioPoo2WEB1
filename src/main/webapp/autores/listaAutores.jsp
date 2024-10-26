@@ -11,7 +11,10 @@
 
 </head>
 <body>
-ESTAMOS EN LISTA AUTORES
+<%
+	String url="http://localhost:8180/ejercicioWEB1/";
+%>
+<a type="button" href="<%=url%>AutoresController?op=nuevo">Nuevo autor</a>
 <table id="tabla" border="1">
 	<thead>
 		<tr>
@@ -31,8 +34,12 @@ ESTAMOS EN LISTA AUTORES
 				<td><%= autor.getIdAutor() %></td> <!-- UNA SOLA LINEA DE CODIGO EN JAVA -->
 				<td><%= autor.getNombre() %></td>
 				<td><%= autor.getNacionalidad() %></td>
-				<td></td>
+				<td>
+				<a href="<%=url%>AutoresController?op=obtener&id=<%= autor.getIdAutor() %>">Modificar</a>
+				</td>
 			</tr>
+			
+			
 		<%
 			}
 		}else{

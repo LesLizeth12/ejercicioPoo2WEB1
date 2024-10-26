@@ -8,10 +8,10 @@
 </head>
 <body>
 	<%
-	String url = "http://localhost:8080/Prueba18/";
+	String url="http://localhost:8180/ejercicioWEB1/";
 	%>
 	<h3>Nuevo Autor</h3>
-	<form role="form" action="<%=url%>AutorControllers" method="POST">
+	<form role="form" action="<%=url%>AutoresController" method="POST">
 		<input type="hidden" name="op" value="insertar" /> <label for="nombre">
 			Nombre del Autor</label> <br> <input type="text" name="nombre" id="nombre" /> <br>
 			
@@ -19,7 +19,7 @@
 			for="nacionalidad"> Nacionalidad del Autor</label> <br> <input type="text"
 			name="nacionalidad" id="nacionalidad" /><br> <input type="submit"
 			value="Guardar" name="Guardar">  <a
-			href="<%=url%>AutorControllers?op=listar">Retorno</a>
+			href="<%=url%>AutoresController?op=listar">Retorno</a>
 	</form>
 </body>
 </html>
