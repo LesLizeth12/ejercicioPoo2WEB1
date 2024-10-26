@@ -70,6 +70,17 @@ public class AutoresController extends HttpServlet {
 		}
 	}
     
+    private void insertar(HttpServletRequest request, HttpServletResponse response) {
+    	try {
+    		Autor miAutor= new Autor();
+    		miAutor.setNombre(request.getParameter("nombre"));
+    		miAutor.setNacionalidad(request.getParameter("nacionalidad"));
+    		
+    	}catch (Exception ex) {
+			// TODO: handle exception
+		}
+    }
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { //ENVIAR DATOS A TRAVES DE LA URL
 		processRequest(request, response);
 	}

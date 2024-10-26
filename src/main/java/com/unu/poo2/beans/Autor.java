@@ -23,6 +23,8 @@ public class Autor {
 		this.nombre = nombre;
 	}
 	
+	
+	
 	public Autor() {
 		this (0,"","");
 	}
