@@ -36,6 +36,8 @@
 				<td><%= autor.getNacionalidad() %></td>
 				<td>
 				<a href="<%=url%>AutoresController?op=obtener&id=<%= autor.getIdAutor() %>">Modificar</a>
+				
+				<a href="<%=url%>AutoresController?op=eliminar&id=<%= autor.getIdAutor() %>">Eliminar</a>
 				</td>
 			</tr>
 			

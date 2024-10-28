@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ page import=com.unu.poo2.beans.* %>
+	<%@ page import="com.unu.poo2.beans.*" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Editar Autor</title>
 </head>
 <body>
 	<%
@@ -18,7 +18,7 @@
 		
 	}
 	%>
-	<h3>Nuevo Autor</h3>
+	<h3>Editar Autor</h3>
 	<form role="form" action="<%=url%>AutoresController" method="POST">
 		<input type="hidden" name="op" value="modificar" /> 
 		<input type="hidden" name="id" value="<%=autor.getIdAutor()%>" /> 

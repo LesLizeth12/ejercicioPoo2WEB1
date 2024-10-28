@@ -44,6 +44,12 @@ public class AutoresController extends HttpServlet {
 			case "obtener":
 				obtener(request, response);
 				break;
+			case "modificar":
+				modificar(request, response);
+				break;
+			case "eliminar":
+				eliminar(request, response);
+				break;
 			}
 		} 
 	}
@@ -96,11 +102,12 @@ public class AutoresController extends HttpServlet {
 		}
     }
     
-    
     private void obtener(HttpServletRequest request, HttpServletResponse response) {
     	try {
 			String id=request.getParameter("id");
+			System.out.println("ID:"+id);
 			Autor miAutor=modelo.obtenerAutor(Integer.parseInt(id));
+			System.out.println("MIautor:"+miAutor);
 			if(miAutor!=null) {
 				request.setAttribute("autor", miAutor);
 				request.getRequestDispatcher("/autores/editarAutor.jsp").forward(request, response);
@@ -110,6 +117,45 @@ public class AutoresController extends HttpServlet {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+    }
+    
+    private void modificar(HttpServletRequest request, HttpServletResponse response) {
+    	try {
+    		Autor miAutor= new Autor();
+    		miAutor.setIdAutor(Integer.parseInt(request.getParameter("id")) );
+    		miAutor.setNombre(request.getParameter("nombre"));
+    		miAutor.setNacionalidad(request.getParameter("nacionalidad"));
+    		if(modelo.modificarAutor(miAutor)>0) {
+    			request.getSession().setAttribute("exito", "autor editado exitosamente");
+    			//response.sendRedirect(request.getContextPath()+"/AutoresController?op=listar");
+    		}
+    		else {
+    			request.getSession().setAttribute("fracaso", "autor no editado");
+    			//response.sendRedirect(request.getContextPath()+"/AutoresController?op=listar");
+    		}
+    		response.sendRedirect(request.getContextPath()+"/AutoresController?op=listar");
+    		
+    	}catch (Exception ex) {
+			ex.getStackTrace();
+		}
+    }
+    
+    private void eliminar(HttpServletRequest request, HttpServletResponse response) {
+    	try {
+    		int idautor=Integer.parseInt(request.getParameter("id"));
+    		if(modelo.eliminarAutor(idautor)>0) {
+    			request.getSession().setAttribute("exito", "autor eliminado exitosamente");
+    			//response.sendRedirect(request.getContextPath()+"/AutoresController?op=listar");
+    		}
+    		else {
+    			request.getSession().setAttribute("fracaso", "autor no eliminado");
+    			//response.sendRedirect(request.getContextPath()+"/AutoresController?op=listar");
+    		}
+    		response.sendRedirect(request.getContextPath()+"/AutoresController?op=listar");
+    		
+    	}catch (Exception ex) {
+			ex.getStackTrace();
 		}
     }
     
