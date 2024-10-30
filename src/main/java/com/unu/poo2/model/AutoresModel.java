@@ -17,7 +17,7 @@ public class AutoresModel extends Conexion{
 		
 		try {
 			List<Autor> lista = new ArrayList<>();
-			String sql = "CALL spListarAutor()";
+			String sql = "CALL sp_listarAutor()";
 			this.abrirConexion();
 			cs = conexion.prepareCall(sql);
 			rs = cs.executeQuery();
@@ -32,6 +32,7 @@ public class AutoresModel extends Conexion{
 			this.cerrarConexion();
 			return lista;
 		} catch (Exception e) {
+			e.printStackTrace();
 			this.cerrarConexion();
 			return null;
 		}
@@ -49,7 +50,7 @@ public class AutoresModel extends Conexion{
 	public int insertarAutor(Autor autor) throws SQLException {
 		try {
 			int filasAfectadas=0;
-			String sql="CALL spInsertarAutor(?,?)";
+			String sql="CALL sp_insertarAutor(?,?)";
 			this.abrirConexion();
 			cs=conexion.prepareCall(sql);	
 			cs.setString(1, autor.getNombre());

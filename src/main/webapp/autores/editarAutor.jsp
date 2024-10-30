@@ -5,11 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>Editar Autor</title>
 </head>
 <body>
 	<%
-	String url = "http://localhost:8180/ejercicioWEB1/";
+	String url = "http://localhost:8280/ejercicioWEB1/";
 	Autor autor;
 	if(request.getAttribute("autor")==null){
 		autor=new Autor();
