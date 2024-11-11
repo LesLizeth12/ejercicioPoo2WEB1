@@ -25,16 +25,14 @@
 
 </head>
 <body>
-	<%
-	String url = "http://localhost:8280/ejercicioWEB1/";
-	%>
-	<div class="container">
+	<%@ include file='/cabecera.jsp'%>
+	<div class="container text-center">
 
 		<a type="button" href="<%=url%>AutoresController?op=nuevo">Nuevo
 			autor</a>
-		<table class="table">
+		<table class="table table-hover table table-bordered border-primary" >
 			<thead>
-				<tr>
+				<tr class="table-primary "  >
 					<th>Codigo del autor</th>
 					<th>Nombre del autor</th>
 					<th>Nacionalidad del autor</th>
@@ -48,27 +46,20 @@
 				if (listaAutores != null) {
 					for (Autor autor : listaAutores) {
 				%>
-				<tr>
+				<tr class="table table-sm">
 					<td><%=autor.getIdAutor()%></td>
 					<!-- UNA SOLA LINEA DE CODIGO EN JAVA -->
 					<td><%=autor.getNombre()%></td>
 					<td><%=autor.getNacionalidad()%></td>
 					<td><a
-						href="<%=url%>AutoresController?op=obtener&id=<%=autor.getIdAutor()%>" class="btn btn-warning">Modificar</a>
-
-						<!--  
+						href="<%=url%>AutoresController?op=obtener&id=<%=autor.getIdAutor()%>" class="btn btn-warning">Modificar</a> <!--  
 						<a
 						href="<%=url%>AutoresController?op=eliminar&id=<%=autor.getIdAutor()%>" class="btn btn-danger">Eliminar</a>
-						-->
-						
-						<a  href="javascript:eliminar('<%=autor.getIdAutor()%>')" class="btn btn-danger">Eliminar</a>
-						
-					</td>
+						--> <a href="javascript:eliminar('<%=autor.getIdAutor()%>')"
+						class="btn btn-danger">Eliminar</a></td>
 				</tr>
-
-
 				<%
-				}
+					}
 				} else {
 				%>
 				<tr>
@@ -79,12 +70,8 @@
 				<%
 				}
 				%>
-
 			</tbody>
 		</table>
-
 	</div>
-
-
 </body>
 </html>

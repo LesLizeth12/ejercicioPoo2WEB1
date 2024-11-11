@@ -9,6 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-HOLAAAAAAAAAAAAAAAAAAAAAA UWU
+	<div class="container">
+	<%@ include file='/cabecera.jsp' %>
+	</div>
 </body>
 </html>

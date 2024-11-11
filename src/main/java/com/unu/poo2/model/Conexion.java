@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class Conexion {
 	private String url = "jdbc:mysql://localhost:3306/bibliotecapoo2";
 	private String user = "root";
-	private String pass = "123456";
+	private String pass = "121003";
 	protected Connection conexion = null;
 	
 	public void abrirConexion() {
@@ -15,7 +15,7 @@ public class Conexion {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conexion = DriverManager.getConnection(url, user, pass);
 			if(conexion!=null) {
-				System.out.println("Exitosa");
+				System.out.println("Conexion exitosa");
 			}
 			
 		} catch (ClassNotFoundException | SQLException e) {

@@ -22,9 +22,6 @@ public class Autor {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	
-	
 	public Autor() {
 		this (0,"","");
 	}
@@ -33,6 +30,4 @@ public class Autor {
 		this.nombre = nombre;
 		this.nacionalidad = nacionalidad;
 	}
-	
-	
 }

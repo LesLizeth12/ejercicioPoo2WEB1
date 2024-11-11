@@ -19,4 +19,34 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>EditorialesController</display-name>
+    <servlet-name>EditorialesController</servlet-name>
+    <servlet-class>com.unu.poo2.controller.EditorialesController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditorialesController</servlet-name>
+    <url-pattern>/EditorialesController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GenerosController</display-name>
+    <servlet-name>GenerosController</servlet-name>
+    <servlet-class>com.unu.poo2.controller.GenerosController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GenerosController</servlet-name>
+    <url-pattern>/GenerosController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LibrosController</display-name>
+    <servlet-name>LibrosController</servlet-name>
+    <servlet-class>com.unu.poo2.controller.LibrosController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LibrosController</servlet-name>
+    <url-pattern>/LibrosController</url-pattern>
+  </servlet-mapping>
 </web-app>

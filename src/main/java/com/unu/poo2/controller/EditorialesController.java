@@ -8,21 +8,18 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
-//import java.lang.System.Logger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import com.unu.poo2.beans.Autor;
-//import com.mysql.cj.x.protobuf.MysqlxNotice.Warning.Level;
-import com.unu.poo2.model.AutoresModel;
+import com.unu.poo2.beans.Editorial;
+import com.unu.poo2.model.EditorialesModel;
 
 /**
- * Servlet implementation class AutoresController
+ * Servlet implementation class EditorialesController
  */
-public class AutoresController extends HttpServlet {
+public class EditorialesController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	AutoresModel modelo=new AutoresModel();
+EditorialesModel modelo=new EditorialesModel();
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try (PrintWriter out =response.getWriter()){
@@ -36,7 +33,7 @@ public class AutoresController extends HttpServlet {
 				listar(request, response);
 				break;
 			case "nuevo":
-				request.getRequestDispatcher("/autores/nuevoAutor.jsp").forward(request, response);
+				request.getRequestDispatcher("/editoriales/nuevoEditorial.jsp").forward(request, response);
 				break;
 			case "insertar":
 				insertar(request, response);
@@ -57,40 +54,37 @@ public class AutoresController extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AutoresController() {
+    public EditorialesController() {
         super();
+        // TODO Auto-generated constructor stub
     }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
     
     private void listar(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			request.setAttribute("listaAutores", modelo.listarAutores()); 
-			
-			Iterator<Autor> it=modelo.listarAutores().iterator(); //LISTA
-			while(it.hasNext()) { //RECORRIDO DE LA LISTA
-				Autor a=it.next();
-				System.out.println(a.getIdAutor()+" "+a.getNombre()+" "+a.getNacionalidad());
-			}
-			
-			request.getRequestDispatcher("/autores/listaAutores.jsp").forward(request, response);
+			request.setAttribute("listaEditoriales", modelo.listarEditoriales()); 
+			request.getRequestDispatcher("/editoriales/listaEditoriales.jsp").forward(request, response);
 		} catch (ServletException | IOException ex) {
 			Logger.getLogger(AutoresController.class.getName()).log(Level.SEVERE, null,ex);
 		}
 	}
-    
+
     private void insertar(HttpServletRequest request, HttpServletResponse response) {
     	try {
-    		Autor miAutor= new Autor();
-    		miAutor.setNombre(request.getParameter("nombre"));
-    		miAutor.setNacionalidad(request.getParameter("nacionalidad"));
-    		if(modelo.insertarAutor(miAutor)>0) {
-    			request.getSession().setAttribute("exito", "autor registrado exitosamente");
-    			//response.sendRedirect(request.getContextPath()+"/AutoresController?op=listar");
+    		Editorial miEditorial= new Editorial();
+    		miEditorial.setNombre(request.getParameter("nombre"));
+    		miEditorial.setContacto(request.getParameter("contacto"));
+    		miEditorial.setTelefono(request.getParameter("telefono"));
+    		if(modelo.insertarEditorial(miEditorial)>0) {
+    			request.getSession().setAttribute("exito", "editorial registrado exitosamente");
     		}
     		else {
-    			request.getSession().setAttribute("fracaso", "autor no registrado");
-    			//response.sendRedirect(request.getContextPath()+"/AutoresController?op=listar");
+    			request.getSession().setAttribute("fracaso", "editorial no registrado");
     		}
-    		response.sendRedirect(request.getContextPath()+"/AutoresController?op=listar");
+    		response.sendRedirect(request.getContextPath()+"/EditorialesController?op=listar");
     		
     	}catch (Exception ex) {
 			ex.getStackTrace();
@@ -101,11 +95,11 @@ public class AutoresController extends HttpServlet {
     	try {
 			String id=request.getParameter("id");
 			System.out.println("ID:"+id);
-			Autor miAutor=modelo.obtenerAutor(Integer.parseInt(id));
-			System.out.println("MIautor:"+miAutor);
-			if(miAutor!=null) {
-				request.setAttribute("autor", miAutor);
-				request.getRequestDispatcher("/autores/editarAutor.jsp").forward(request, response);
+			Editorial miEditorial=modelo.obtenerEditorial(Integer.parseInt(id));
+			System.out.println("MIeditorial:"+miEditorial);
+			if(miEditorial!=null) {
+				request.setAttribute("editorial", miEditorial);
+				request.getRequestDispatcher("/editoriales/editarEditorial.jsp").forward(request, response);
 			}else {
 				response.sendRedirect(request.getContextPath()+"/error404.jsp");
 			}
@@ -117,19 +111,20 @@ public class AutoresController extends HttpServlet {
     
     private void modificar(HttpServletRequest request, HttpServletResponse response) {
     	try {
-    		Autor miAutor= new Autor();
-    		miAutor.setIdAutor(Integer.parseInt(request.getParameter("id")) );
-    		miAutor.setNombre(request.getParameter("nombre"));
-    		miAutor.setNacionalidad(request.getParameter("nacionalidad"));
-    		if(modelo.modificarAutor(miAutor)>0) {
-    			request.getSession().setAttribute("exito", "autor editado exitosamente");
+    		Editorial miEditorial= new Editorial();
+    		miEditorial.setIdEditorial(Integer.parseInt(request.getParameter("id")) );
+    		miEditorial.setNombre(request.getParameter("nombre"));
+    		miEditorial.setContacto(request.getParameter("contacto"));
+    		miEditorial.setTelefono(request.getParameter("telefono"));
+    		if(modelo.modificarEditorial(miEditorial)>0) {
+    			request.getSession().setAttribute("exito", "editorial editado exitosamente");
     			//response.sendRedirect(request.getContextPath()+"/AutoresController?op=listar");
     		}
     		else {
-    			request.getSession().setAttribute("fracaso", "autor no editado");
+    			request.getSession().setAttribute("fracaso", "editorial no editado");
     			//response.sendRedirect(request.getContextPath()+"/AutoresController?op=listar");
     		}
-    		response.sendRedirect(request.getContextPath()+"/AutoresController?op=listar");
+    		response.sendRedirect(request.getContextPath()+"/EditorialesController?op=listar");
     		
     	}catch (Exception ex) {
 			ex.getStackTrace();
@@ -138,32 +133,33 @@ public class AutoresController extends HttpServlet {
     
     private void eliminar(HttpServletRequest request, HttpServletResponse response) {
     	try {
-    		int idautor=Integer.parseInt(request.getParameter("id"));
-    		if(modelo.eliminarAutor(idautor)>0) {
-    			request.getSession().setAttribute("exito", "autor eliminado exitosamente");
+    		int ideditorial=Integer.parseInt(request.getParameter("id"));
+    		if(modelo.eliminarEditorial(ideditorial)>0) {
+    			request.getSession().setAttribute("exito", "editorial eliminado exitosamente");
     			//response.sendRedirect(request.getContextPath()+"/AutoresController?op=listar");
     		}
     		else {
-    			request.getSession().setAttribute("fracaso", "autor no eliminado");
+    			request.getSession().setAttribute("fracaso", "editorial no eliminado");
     			//response.sendRedirect(request.getContextPath()+"/AutoresController?op=listar");
     		}
-    		response.sendRedirect(request.getContextPath()+"/AutoresController?op=listar");
+    		response.sendRedirect(request.getContextPath()+"/EditorialesController?op=listar");
     		
     	}catch (Exception ex) {
 			ex.getStackTrace();
 		}
     }
     
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { //ENVIAR DATOS A TRAVES DE LA URL
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		processRequest(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { //ENVIAR DATOS DE MANERA OCULTA
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
 		processRequest(request, response);
 	}
+
 }
