@@ -94,6 +94,7 @@ public class AutoresController extends HttpServlet {
         			request.getSession().setAttribute("fracaso", "autor no registrado");
         			//response.sendRedirect(request.getContextPath()+"/AutoresController?op=listar");
         		}
+        		
         		response.sendRedirect(request.getContextPath()+"/AutoresController?op=listar");
     		}else {
     			request.getRequestDispatcher("/autores/nuevoAutor.jsp").forward(request, response);
