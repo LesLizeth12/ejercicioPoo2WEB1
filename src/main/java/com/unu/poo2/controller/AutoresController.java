@@ -7,7 +7,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 //import java.lang.System.Logger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +17,7 @@ import java.util.logging.Logger;
 import com.unu.poo2.beans.Autor;
 //import com.mysql.cj.x.protobuf.MysqlxNotice.Warning.Level;
 import com.unu.poo2.model.AutoresModel;
+import java.util.List.*;
 
 /**
  * Servlet implementation class AutoresController
@@ -79,18 +82,28 @@ public class AutoresController extends HttpServlet {
     
     private void insertar(HttpServletRequest request, HttpServletResponse response) {
     	try {
-    		Autor miAutor= new Autor();
-    		miAutor.setNombre(request.getParameter("nombre"));
-    		miAutor.setNacionalidad(request.getParameter("nacionalidad"));
-    		if(modelo.insertarAutor(miAutor)>0) {
-    			request.getSession().setAttribute("exito", "autor registrado exitosamente");
-    			//response.sendRedirect(request.getContextPath()+"/AutoresController?op=listar");
+    		if(!validar(request, response)) {
+    			Autor miAutor= new Autor();
+        		miAutor.setNombre(request.getParameter("nombre"));
+        		miAutor.setNacionalidad(request.getParameter("nacionalidad"));
+        		if(modelo.insertarAutor(miAutor)>0) {
+        			request.getSession().setAttribute("exito", "autor registrado exitosamente");
+        			//response.sendRedirect(request.getContextPath()+"/AutoresController?op=listar");
+        		}
+        		else {
+        			request.getSession().setAttribute("fracaso", "autor no registrado");
+        			//response.sendRedirect(request.getContextPath()+"/AutoresController?op=listar");
+        		}
+        		response.sendRedirect(request.getContextPath()+"/AutoresController?op=listar");
+    		}else {
+    			request.getRequestDispatcher("/autores/nuevoAutor.jsp").forward(request, response);
     		}
-    		else {
-    			request.getSession().setAttribute("fracaso", "autor no registrado");
-    			//response.sendRedirect(request.getContextPath()+"/AutoresController?op=listar");
-    		}
-    		response.sendRedirect(request.getContextPath()+"/AutoresController?op=listar");
+    		
+    		
+    		
+    		
+    		
+    		
     		
     	}catch (Exception ex) {
 			ex.getStackTrace();
@@ -152,6 +165,26 @@ public class AutoresController extends HttpServlet {
     	}catch (Exception ex) {
 			ex.getStackTrace();
 		}
+    }
+    
+    private boolean validar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	boolean res=false;
+    	List<String> listError=new ArrayList<>();
+    	try {
+			if(request.getParameter("nombre").equals("")) {
+				res=true;
+				listError.add("Ingrese el nombre del autor");
+			}
+			if(request.getParameter("nacionalidad").equals("")) {
+				res=true;
+				listError.add("Ingrese la nacionalidad del autor");
+			}
+			request.setAttribute("respuesta", res);
+			request.setAttribute("listaError", listError);
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+    	return res;
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { //ENVIAR DATOS A TRAVES DE LA URL

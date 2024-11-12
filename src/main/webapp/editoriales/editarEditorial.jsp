@@ -9,7 +9,7 @@
 </head>
 <body>
 	<%
-	String url = "http://localhost:8080/ejercicioWEB1/";
+	String url = "http://localhost:8280/ejercicioWEB1/";
 	Editorial editorial;
 	if(request.getAttribute("editorial")==null){
 		editorial=new Editorial();

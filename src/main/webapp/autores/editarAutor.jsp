@@ -12,7 +12,7 @@
 </head>
 <body>
 	<%
-	String url = "http://localhost:8080/ejercicioWEB1/";
+	String url = "http://localhost:8280/ejercicioWEB1/";
 	Autor autor;
 	if(request.getAttribute("autor")==null){
 		autor=new Autor();

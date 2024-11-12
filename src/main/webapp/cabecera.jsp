@@ -23,7 +23,7 @@
 </head>
 <body>
 	<%
-	String url = "http://localhost:8080/ejercicioWEB1/";
+	String url = "http://localhost:8280/ejercicioWEB1/";
 	%>
 	<div class="container">
 		<nav class="navbar navbar-expand-lg bg-primary">

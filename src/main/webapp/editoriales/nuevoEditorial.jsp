@@ -8,7 +8,7 @@
 </head>
 <body>
 	<%
-	String url = "http://localhost:8080/ejercicioWEB1/";
+	String url = "http://localhost:8280/ejercicioWEB1/";
 	%>
 	<h3>Nuevo Editorial</h3>
 	<form role="form" action="<%=url%>EditorialesController" method="POST">

@@ -13,7 +13,7 @@
 </head>
 <body>
 	<%
-	String url = "http://localhost:8080/ejercicioWEB1/";
+	String url = "http://localhost:8280/ejercicioWEB1/";
 	Autor a=new Autor(); 
 	Editorial e=new Editorial();
 	Genero g=new Genero();

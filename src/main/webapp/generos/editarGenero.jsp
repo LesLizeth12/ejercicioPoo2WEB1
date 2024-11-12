@@ -10,7 +10,7 @@
 </head>
 <body>
 	<%
-	String url = "http://localhost:8080/ejercicioWEB1/";
+	String url = "http://localhost:8280/ejercicioWEB1/";
 	Genero genero;
 	if(request.getAttribute("genero")==null){
 		genero=new Genero();
